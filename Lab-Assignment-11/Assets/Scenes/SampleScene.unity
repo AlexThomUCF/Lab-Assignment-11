@@ -258,6 +258,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940e7a890b14b0a46802fbd1b701fafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start: {x: 2, y: 4}
+  goal: {x: 6, y: 1}
+  gridWidth: 10
+  gridHeight: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
