@@ -122,14 +122,14 @@ public class Pathfinding : MonoBehaviour
 
         float cellSize = 1f;
 
-        // Draw grid on X-Y plane
+        // Draw grid
         for (int y = 0; y < grid.GetLength(0); y++)
         {
             for (int x = 0; x < grid.GetLength(1); x++)
             {
-                Vector3 pos = new Vector3(x * cellSize, y * cellSize, 0); // X-Y plane
+                Vector3 pos = new Vector3(x * cellSize, y * cellSize, 0);
                 Gizmos.color = grid[y, x] == 1 ? Color.black : Color.white;
-                Gizmos.DrawCube(pos, new Vector3(cellSize, cellSize, 0.1f)); // thin on Z
+                Gizmos.DrawCube(pos, new Vector3(cellSize, cellSize, 0.1f));
             }
         }
 
