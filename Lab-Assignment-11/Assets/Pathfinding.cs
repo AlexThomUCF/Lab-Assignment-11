@@ -25,7 +25,28 @@ public class Pathfinding : MonoBehaviour
     private void Start()
     {
         GenerateRandomGrid(gridWidth, gridHeight, 0.2f);
+        Camera.main.orthographic = true;
+        Camera.main.orthographicSize = gridHeight / 2f;
+        Camera.main.transform.position = new Vector3(gridWidth / 2f, gridHeight / 2f, -10);
         FindPath(start, goal);
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            int gridX = Mathf.FloorToInt(mouseWorldPos.x);
+            int gridY = Mathf.FloorToInt(mouseWorldPos.y);
+
+            Vector2Int gridPos = new Vector2Int(gridX, gridY);
+
+            AddObstacle(gridPos);
+
+            #if UNITY_EDITOR
+            UnityEditor.SceneView.RepaintAll(); // refresh Scene view to see changes
+            #endif
+        }
     }
 
     #region Dynamic Start/Goal
@@ -62,6 +83,10 @@ public class Pathfinding : MonoBehaviour
         {
             grid[position.y, position.x] = 1;
             FindPath(start, goal);
+        }
+        else
+        {
+            Debug.LogWarning($"Position {position} is out of grid bounds!");
         }
     }
     #endregion
